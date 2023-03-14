@@ -2,9 +2,9 @@ import React from 'react';
 
 const JobUpdate = () => {
   return (
-    <form class="space-y-6">
-      <div class="fieldContainer">
-        <label for="lwsJobTitle" class="text-sm font-medium text-slate-300">Job Title</label>
+    <form className="space-y-6">
+      <div className="fieldContainer">
+        <label for="lwsJobTitle" className="text-sm font-medium text-slate-300">Job Title</label>
         <select id="lwsJobTitle" name="lwsJobTitle" autocomplete="lwsJobTitle" required>
           <option value="" hidden selected>Select Job</option>
           <option>Software Engineer</option>
@@ -23,7 +23,7 @@ const JobUpdate = () => {
           <option>Frontend Engineer</option>
         </select>
       </div>
-      <div class="fieldContainer">
+      <div className="fieldContainer">
         <label for="lwsJobType">Job Type</label>
         <select id="lwsJobType" name="lwsJobType" autocomplete="lwsJobType" required>
           <option value="" hidden selected>Select Job Type</option>
@@ -33,21 +33,21 @@ const JobUpdate = () => {
         </select>
       </div>
 
-      <div class="fieldContainer">
+      <div className="fieldContainer">
         <label for="lwsJobSalary">Salary</label>
-        <div class="flex border rounded-md shadow-sm border-slate-600">
-          <span class="input-tag">BDT</span>
-          <input type="number" name="lwsJobSalary" id="lwsJobSalary" required class="!rounded-l-none !border-0"
+        <div className="flex border rounded-md shadow-sm border-slate-600">
+          <span className="input-tag">BDT</span>
+          <input type="number" name="lwsJobSalary" id="lwsJobSalary" required className="!rounded-l-none !border-0"
             placeholder="20,00,000" />
         </div>
       </div>
 
-      <div class="fieldContainer">
+      <div className="fieldContainer">
         <label for="lwsJobDeadline">Deadline</label>
         <input type="date" name="lwsJobDeadline" id="lwsJobDeadline" required />
       </div>
-      <div class="text-right">
-        <input type="submit" value="Save" class="lws-submit cursor-pointer btn btn-primary w-fit" />
+      <div className="text-right">
+        <input type="submit" value="Save" className="lws-submit cursor-pointer btn btn-primary w-fit" />
       </div>
     </form>
   );
