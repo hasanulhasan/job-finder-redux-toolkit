@@ -7,6 +7,7 @@ import { fetchJobs } from '../../features/job/JobSlice';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const { type, search } = useSelector(state => state.filter);
   const { jobs, isLoading, isError, error } = useSelector(state => state.jobs);
   // console.log(jobs)
 
@@ -19,7 +20,23 @@ const Home = () => {
   if (!isLoading && isError) content = <p className='error'>There was an error</p>;
   if (!isLoading && !isError && jobs?.length === 0) content = <p className='error'>There is no Job</p>;
   if (!isLoading && !isError && jobs?.length > 0) {
-    content = jobs.map(job => <Job key={job
+    content = jobs.filter(job => {
+      if (type === 'Full Time') {
+        const newJob = job.filter(job.type === type)
+        return newJob
+      }
+      else if (type === 'Internship') {
+        job.filter(job.type === type)
+        return job
+      }
+      else if (type === 'Remote') {
+        job.filter(job.type === type)
+        return job
+      }
+      else {
+        return job
+      }
+    }).filter(job => job.title.toLowerCase().includes(search.toLowerCase())).map(job => <Job key={job
       .id} job={job} />)
   }
 

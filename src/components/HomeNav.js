@@ -1,7 +1,13 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { jobType } from '../features/filterSlice';
 
 const HomeNav = () => {
+  const dispatch = useDispatch();
+  const handleFilter = (type) => {
+    dispatch(jobType(type))
+  }
   return (
     <nav>
       <ul className="space-y-4">
@@ -12,22 +18,22 @@ const HomeNav = () => {
           </Link>
           <ul className="space-y-6 lg:space-y-2 ">
             <li>
-              <a className="sub-menu" href="/jobs/internship">
+              <button onClick={() => handleFilter('Internship')} className="sub-menu" href="/jobs/internship">
                 <i className="fa-solid fa-stop !text-[#FF5757]"></i>
                 Internship
-              </a>
+              </button>
             </li>
             <li>
-              <a className="sub-menu" href="/jobs/fulltime">
+              <button onClick={() => handleFilter('Full Time')} className="sub-menu" href="/jobs/fulltime">
                 <i className="fa-solid fa-stop !text-[#FF8A00]"></i>
                 Full Time
-              </a>
+              </button>
             </li>
             <li>
-              <a className="sub-menu" href="/jobs/remote">
+              <button onClick={() => handleFilter('Remote')} className="sub-menu" href="/jobs/remote">
                 <i className="fa-solid fa-stop !text-[#56E5C4]"></i>
                 Remote
-              </a>
+              </button>
             </li>
           </ul>
         </li>

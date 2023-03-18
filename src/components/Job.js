@@ -1,13 +1,20 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { removeJob } from '../features/job/JobSlice';
 
 const Job = ({ job }) => {
+  const dispatch = useDispatch();
   const { id, title, type, salary, deadline, } = job;
-  console.log(job)
+  // console.log(job)
 
   let jobType = null;
   if (type === 'Full Time') jobType = '#FF8A00';
   if (type === 'Remote') jobType = '#56E5C4';
   if (type === 'Internship') jobType = '#FF5757';
+
+  const handleDelete = (id) => {
+    dispatch(removeJob(id));
+  }
 
   return (
     <div className="job">
@@ -38,7 +45,7 @@ const Job = ({ job }) => {
         </span>
 
         <span className="sm:ml-3">
-          <button type="button" className="lws-delete btn btn-danger ">
+          <button onClick={() => handleDelete(id)} type="button" className="lws-delete btn btn-danger ">
             <i className="fa-solid fa-trash text-gray-300 -ml-1 mr-2"></i>
             Delete
           </button>

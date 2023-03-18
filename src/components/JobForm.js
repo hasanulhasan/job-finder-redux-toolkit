@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addJob } from '../features/job/JobAPI';
-import { fetchJobs } from '../features/job/JobSlice';
+import { createJob, fetchJobs } from '../features/job/JobSlice';
 
 const JobForm = () => {
   const dispatch = useDispatch();
@@ -20,12 +19,12 @@ const JobForm = () => {
   }
   const handleUpdate = (e) => {
     e.preventDefault();
-    dispatch(addJob({ title, type, salary, deadline }))
+    dispatch(createJob({ title, type, salary, deadline }))
     reset();
   }
-  useEffect(() => {
-    dispatch(fetchJobs())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(fetchJob())
+  // }, [dispatch])
 
   return (
     <form className="space-y-6" onSubmit={handleUpdate}>
@@ -74,10 +73,10 @@ const JobForm = () => {
 
       <div className="fieldContainer">
         <label for="lwsJobDeadline">Deadline</label>
-        <input type="date" name="lwsJobDeadline" id="lwsJobDeadline" required />
+        <input value={deadline}
+          onChange={e => setDeadline(e.target.value)} type="date" name="lwsJobDeadline" id="lwsJobDeadline" required />
       </div>
-      <div value={deadline}
-        onChange={e => setDeadline(e.target.value)} className="text-right">
+      <div className="text-right">
         <input type="submit" value="Save" className="lws-submit cursor-pointer btn btn-primary w-fit" />
       </div>
     </form>
