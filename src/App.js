@@ -1,6 +1,5 @@
 import React from 'react';
-import Home from './app/Pages/Home';
-import UpdateJob from './app/Pages/UpdateJob';
+import Home from './Pages/Home';
 
 function App() {
   return (

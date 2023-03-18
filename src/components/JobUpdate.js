@@ -5,7 +5,7 @@ const JobUpdate = () => {
     <form className="space-y-6">
       <div className="fieldContainer">
         <label for="lwsJobTitle" className="text-sm font-medium text-slate-300">Job Title</label>
-        <select id="lwsJobTitle" name="lwsJobTitle" autocomplete="lwsJobTitle" required>
+        <select id="lwsJobTitle" name="lwsJobTitle" autoComplete="lwsJobTitle" required>
           <option value="" hidden selected>Select Job</option>
           <option>Software Engineer</option>
           <option>Software Developer</option>
@@ -25,7 +25,7 @@ const JobUpdate = () => {
       </div>
       <div className="fieldContainer">
         <label for="lwsJobType">Job Type</label>
-        <select id="lwsJobType" name="lwsJobType" autocomplete="lwsJobType" required>
+        <select id="lwsJobType" name="lwsJobType" autoComplete="lwsJobType" required>
           <option value="" hidden selected>Select Job Type</option>
           <option>Full Time</option>
           <option>Internship</option>

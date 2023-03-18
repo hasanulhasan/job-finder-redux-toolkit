@@ -1,12 +1,18 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import HomeNav from '../../components/HomeNav';
-import Job from '../../components/Job';
-import SideBar from '../../components/SideBar';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import HomeNav from '../components/HomeNav';
+import Job from '../components/Job';
+import SideBar from '../components/SideBar';
+import { fetchJobs } from '../features/job/JobSlice';
 
 const Home = () => {
+  const dispatch = useDispatch();
   const { jobs } = useSelector(state => state.jobs);
   console.log(jobs)
+
+  useEffect(() => {
+    dispatch(fetchJobs())
+  }, [dispatch])
 
   return (
     <div className="max-w-[90rem] mx-auto px-4 sm:px-6 md:px-8 ">

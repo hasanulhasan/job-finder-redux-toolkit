@@ -10,12 +10,11 @@ const initialState = {
 
 export const fetchJobs = createAsyncThunk('job/fetchJobs', async () => {
   const jobs = await getJobs();
-  console.log(jobs)
   return jobs
 })
 
 const jobsSlice = createSlice({
-  name: 'job',
+  name: 'jobs',
   initialState,
   extraReducers: (builder) => {
     builder
