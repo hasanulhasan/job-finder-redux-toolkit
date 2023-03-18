@@ -12,7 +12,7 @@ const HomeNav = () => {
     <nav>
       <ul className="space-y-4">
         <li>
-          <Link to="/" className="main-menu menu-active lws-allJob">
+          <Link onClick={() => handleFilter('')} to="/" className="main-menu menu-active lws-allJob">
             <i className="fa-solid fa-briefcase"></i>
             <span> All Available Jobs</span>
           </Link>

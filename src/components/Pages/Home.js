@@ -22,16 +22,13 @@ const Home = () => {
   if (!isLoading && !isError && jobs?.length > 0) {
     content = jobs.filter(job => {
       if (type === 'Full Time') {
-        const newJob = job.filter(job.type === type)
-        return newJob
+        return (job.type === type)
       }
       else if (type === 'Internship') {
-        job.filter(job.type === type)
-        return job
+        return (job.type === type)
       }
       else if (type === 'Remote') {
-        job.filter(job.type === type)
-        return job
+        return (job.type === type)
       }
       else {
         return job
