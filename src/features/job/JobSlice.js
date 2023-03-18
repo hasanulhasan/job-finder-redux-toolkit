@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { getJobs, addJob, deleteJob } from "./JobAPI"
+import { getJobs, addJob, deleteJob, editJob } from "./JobAPI"
 
 const initialState = {
   jobs: [],
   isLoading: false,
   isError: false,
-  error: ''
+  error: '',
+  editItem: {}
 }
 //fetch jobs only
 export const fetchJobs = createAsyncThunk('job/fetchJobs', async () => {
@@ -23,10 +24,22 @@ export const removeJob = createAsyncThunk('job/removeJob', async (id) => {
   const job = await deleteJob(id);
   return job
 })
+export const changeJob = createAsyncThunk('job/changeJob', async ({ id, data }) => {
+  const job = await editJob(id, data);
+  return job
+})
 
 const jobsSlice = createSlice({
   name: 'jobs',
   initialState,
+  reducers: {
+    editActive: (state, action) => {
+      state.editItem = action.payload;
+    },
+    editInActive: (state) => {
+      state.editItem = {}
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchJobs.pending, (state) => {
@@ -71,7 +84,23 @@ const jobsSlice = createSlice({
         state.isLoading = false;
         state.error = action.error?.message;
       })
+      .addCase(changeJob.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(changeJob.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isLoading = false;
+        const indexToUpdate = state.jobs.findIndex(t => t.id === action.payload.id);
+        state.jobs[indexToUpdate] = action.payload;
+      })
+      .addCase(changeJob.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.error = action.error?.message;
+      })
   }
 })
 
 export default jobsSlice.reducer
+export const { editActive, editInActive } = jobsSlice.actions

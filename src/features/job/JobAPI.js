@@ -5,6 +5,10 @@ export const getJobs = async () => {
   const res = await axios.get('/jobs');
   return res.data;
 }
+// export const getJob = async (id) => {
+//   const res = await axios.get(`/jobs/${id}`);
+//   return res.data;
+// }
 
 export const addJob = async (data) => {
   // console.log(data);

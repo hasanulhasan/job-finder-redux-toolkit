@@ -1,8 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { removeJob } from '../features/job/JobSlice';
+import { useNavigate } from 'react-router-dom';
+import { editActive, removeJob } from '../features/job/JobSlice';
+import Edit from './Pages/Edit';
 
 const Job = ({ job }) => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const { id, title, type, salary, deadline, } = job;
   // console.log(job)
@@ -14,6 +17,12 @@ const Job = ({ job }) => {
 
   const handleDelete = (id) => {
     dispatch(removeJob(id));
+  }
+
+  const handleEdit = () => {
+    dispatch(editActive(job))
+    navigate(`/edit/${id}`);
+    // <Edit job={job} />
   }
 
   return (
@@ -38,7 +47,7 @@ const Job = ({ job }) => {
       </div>
       <div className="mt-5 flex lg:mt-0 lg:ml-4">
         <span className="hidden sm:block">
-          <button type="button" className="lws-edit btn btn-primary">
+          <button onClick={() => handleEdit()} type="button" className="lws-edit btn btn-primary">
             <i className="fa-solid fa-pen text-gray-300 -ml-1 mr-2"></i>
             Edit
           </button>
