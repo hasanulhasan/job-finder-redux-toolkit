@@ -1,14 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HomeNav = () => {
   return (
     <nav>
       <ul className="space-y-4">
         <li>
-          <a href="/jobs" className="main-menu menu-active lws-allJob">
+          <Link to="/" className="main-menu menu-active lws-allJob">
             <i className="fa-solid fa-briefcase"></i>
             <span> All Available Jobs</span>
-          </a>
+          </Link>
           <ul className="space-y-6 lg:space-y-2 ">
             <li>
               <a className="sub-menu" href="/jobs/internship">
@@ -31,10 +32,10 @@ const HomeNav = () => {
           </ul>
         </li>
         <li>
-          <a href="/jobs" className="main-menu lws-AddJob">
+          <Link to="/add" className="main-menu lws-AddJob">
             <i className="fa-solid fa-file-circle-plus"></i>
             <span>Add NewJob</span>
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>

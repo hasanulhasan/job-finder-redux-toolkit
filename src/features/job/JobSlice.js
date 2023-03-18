@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { getJobs } from "./JobAPI"
+import { getJobs, addJob } from "./JobAPI"
 
 const initialState = {
   jobs: [],
@@ -7,10 +7,15 @@ const initialState = {
   isError: false,
   error: ''
 }
-
+//fetch jobs only
 export const fetchJobs = createAsyncThunk('job/fetchJobs', async () => {
   const jobs = await getJobs();
   return jobs
+})
+//Add job
+export const createJob = createAsyncThunk('job/createJob', async (data) => {
+  const job = await addJob(data);
+  return job
 })
 
 const jobsSlice = createSlice({
@@ -28,6 +33,20 @@ const jobsSlice = createSlice({
         state.jobs = action.payload;
       })
       .addCase(fetchJobs.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.error = action.error?.message;
+      })
+      .addCase(createJob.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(createJob.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isLoading = false;
+        state.jobs.push(action.payload);
+      })
+      .addCase(createJob.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
         state.error = action.error?.message;

@@ -1,6 +1,6 @@
 import React from 'react';
 import HomeNav from '../../components/HomeNav';
-import JobUpdate from '../../components/JobUpdate';
+import JobForm from '../JobForm';
 
 const UpdateJob = () => {
   return (
@@ -13,7 +13,7 @@ const UpdateJob = () => {
           <h1 className="mb-10 text-center section-title">Add New Job</h1>
 
           <div className="max-w-3xl mx-auto">
-            <JobUpdate />
+            <JobForm />
           </div>
         </main>
       </div>
