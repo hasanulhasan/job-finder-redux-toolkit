@@ -7,7 +7,7 @@ import { fetchJobs } from '../../features/job/JobSlice';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { type, search } = useSelector(state => state.filter);
+  const { type, search, sort } = useSelector(state => state.filter);
   const { jobs, isLoading, isError, error } = useSelector(state => state.jobs);
   // console.log(jobs)
 
@@ -33,8 +33,15 @@ const Home = () => {
       else {
         return job
       }
-    }).filter(job => job.title.toLowerCase().includes(search.toLowerCase())).map(job => <Job key={job
-      .id} job={job} />)
+    })
+      .filter(job => job.title.toLowerCase().includes(search.toLowerCase()))
+      .sort((a, b) => {
+        if (sort === 'lowToHigh') { return (Number(a.salary) - Number(b.salary)) }
+        else if (sort === 'highToLow') { return (Number(b.salary) - Number(a.salary)) }
+        else { return null }
+      })
+      .map(job => <Job key={job
+        .id} job={job} />)
   }
 
   return (
@@ -58,3 +65,4 @@ const Home = () => {
 };
 
 export default Home;
+

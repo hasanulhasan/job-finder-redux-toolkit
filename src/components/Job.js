@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { editActive, removeJob } from '../features/job/JobSlice';
-import Edit from './Pages/Edit';
 
 const Job = ({ job }) => {
   const navigate = useNavigate()

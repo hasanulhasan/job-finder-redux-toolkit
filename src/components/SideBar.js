@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { searchParam } from '../features/filterSlice';
+import { searchParam, sortType } from '../features/filterSlice';
 
 const SideBar = () => {
   const dispatch = useDispatch()
@@ -13,11 +13,13 @@ const SideBar = () => {
           <i className="fa-solid fa-magnifying-glass search-icon group-focus-within:text-blue-500"></i>
           <input onChange={(e) => dispatch(searchParam(e.target.value))} type="text" placeholder="Search Job" className="search-input" id="lws-searchJob" />
         </div>
-        <select id="lws-sort" name="sort" autoComplete="sort" className="flex-1">
-          <option>Default</option>
-          <option>Salary (Low to High)</option>
-          <option>Salary (High to Low)</option>
+
+        <select onChange={(e)=> dispatch(sortType(e.target.value))}  id="lws-sort" name="sort" autoComplete="sort" className="flex-1">
+          <option value='default'>Default</option>
+          <option value='lowToHigh'>Salary (Low to High)</option>
+          <option value='highToLow'>Salary (High to Low)</option>
         </select>
+
       </div>
     </div>
   );
